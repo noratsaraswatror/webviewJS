@@ -23,7 +23,7 @@ class ViewController: UIViewController,WKNavigationDelegate {
         self.view.addSubview(webView!)
     }
     
-
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         /* this is for calling backtoapp js function if you get result in JSON then fine */
         webView.evaluateJavaScript("backtoapp()", completionHandler: { (result, error) in
@@ -42,33 +42,33 @@ class ViewController: UIViewController,WKNavigationDelegate {
             var response = [String: String]()
             for line in self.getLast(array: lines,count: 3) {
                 
-//                if line.split(separator: " ").first == "query" {
-//                    let p: String = line.split(separator: " ").last as! String
-//                    response["query"] = p
-//                }
-//                if line.split(separator: " ").first == "Policy" {
-//                    let p: String = line.split(separator: " ").last as! String
-//                    response["Policy"] = p
-//                }
-//                if line.split(separator: " ").first == "Payment" {
-//                    let p: String = line.split(separator: " ").last as! String
-//                    response["Payment"] = p
-//                }
+                //                if line.split(separator: " ").first == "query" {
+                //                    let p: String = line.split(separator: " ").last as! String
+                //                    response["query"] = p
+                //                }
+                //                if line.split(separator: " ").first == "Policy" {
+                //                    let p: String = line.split(separator: " ").last as! String
+                //                    response["Policy"] = p
+                //                }
+                //                if line.split(separator: " ").first == "Payment" {
+                //                    let p: String = line.split(separator: " ").last as! String
+                //                    response["Payment"] = p
+                //                }
                 response["\(line.split(separator: " ").first)"] = "\(line.split(separator: " ").last)"
                 print("first value ")
-                 print(line.split(separator: " ").first)
-                 print("last value ")
+                print(line.split(separator: " ").first)
+                print("last value ")
                 print(line.split(separator: " ").last)
             }
-        print(response)
+            print(response)
         }
     }
     func getLast<T>(array: [T], count: Int) -> [T] {
-      if count >= array.count {
-        return array
-      }
-      let first = array.count - count
-      return Array(array[first..<first+count])
+        if count >= array.count {
+            return array
+        }
+        let first = array.count - count
+        return Array(array[first..<first+count])
     }
 }
 
