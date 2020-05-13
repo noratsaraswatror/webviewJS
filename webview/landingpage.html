@@ -1,0 +1,37 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head id="Head1" runat="success">
+            <title></title>
+            <script type="text/javascript">
+            function backtoapp() {
+                message = "Success";
+                proposalId = "1";
+                policyNum = "5";
+                
+                if(message == "Success" && policyNum != "") {
+                    jsonObj = '{"status" : "success","message" : "Your payment is completed successfully","proposalId" : "${props.proposalId}","policyNo" : ${props.policy}, "ins_type" : "health", "transactionNo" : "", "proposalInitiationRequired" : false}';
+                    Android.sendData(jsonObj);
+                }
+                else if(message == "Success" && policyNum == "") {
+                    jsonObj = '{"status" : "success","message" : "Your payment is completed successfully","proposalId" : "${props.proposalId}","policyNo" : "", "ins_type" : "health", "transactionNo" : "", "proposalInitiationRequired" : false}';
+                    Android.sendData(jsonObj);
+                }
+                else {
+                    jsonObj = '{"status" : "failure", "message" : "Sorry, your payment failed","proposalId" : "${props.proposalId}","policyNo" : "", "ins_type" : "health", "transactionNo" : "", "proposalInitiationRequired" : false}';
+                    Android.sendData(jsonObj);
+                }
+            }
+        </script>
+        </head>
+        <body>
+            test
+            <div style="background-color:lightblue; margin:auto; width: 700px; min-height: 200px; padding: 40px">
+                <h3> Payments Success/Failure Page!</h3>
+                <p>
+                    query string: ${props.query}<br />
+                    Policy No: ${props.policy}<br />
+                    Payment Status: ${props.paymentStatus}<br />
+                </p>
+            </div>
+        </body>
+        </html>
