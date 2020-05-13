@@ -15,7 +15,7 @@ class ViewController: UIViewController,WKNavigationDelegate {
         print("WebView Starting")
         webView = WKWebView(frame:  self.view.frame)
         webView!.navigationDelegate = self
-        // MARK:- Work with your original URL, some JS not working on webview html
+        // MARK:- Work with your original URL, some JS mot working on webview html
         if let path = Bundle.main.url(forResource: "landingpage", withExtension: "html"){
             let myURLRequest:URLRequest = URLRequest(url: path)
             webView!.load(myURLRequest)
@@ -37,7 +37,11 @@ class ViewController: UIViewController,WKNavigationDelegate {
         })
         //  Else you can get text for this div and can play with them
         webView.evaluateJavaScript("document.body.innerText") { (result, error) in
-            print(result as Any)
+            let Nresult = result as? String
+            let lines = Nresult!.split { $0.isNewline }
+            for line in lines {
+                print(line)
+            }
         }
     }
 }
