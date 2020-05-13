@@ -39,12 +39,28 @@ class ViewController: UIViewController,WKNavigationDelegate {
         webView.evaluateJavaScript("document.body.innerText") { (result, error) in
             let Nresult = result as? String
             let lines = Nresult!.split { $0.isNewline }
+            var response = [String: String]()
             for line in self.getLast(array: lines,count: 3) {
+                
+//                if line.split(separator: " ").first == "query" {
+//                    let p: String = line.split(separator: " ").last as! String
+//                    response["query"] = p
+//                }
+//                if line.split(separator: " ").first == "Policy" {
+//                    let p: String = line.split(separator: " ").last as! String
+//                    response["Policy"] = p
+//                }
+//                if line.split(separator: " ").first == "Payment" {
+//                    let p: String = line.split(separator: " ").last as! String
+//                    response["Payment"] = p
+//                }
+                response["\(line.split(separator: " ").first)"] = "\(line.split(separator: " ").last)"
                 print("first value ")
                  print(line.split(separator: " ").first)
                  print("last value ")
                 print(line.split(separator: " ").last)
             }
+        print(response)
         }
     }
     func getLast<T>(array: [T], count: Int) -> [T] {
